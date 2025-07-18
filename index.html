@@ -9,29 +9,25 @@
       padding: 0;
       height: 100%;
       width: 100%;
+      min-height: 100vh;
+      min-width: 100vw;
     }
 
     body {
+      height: 100vh;
+      width: 100vw;
       min-height: 100vh;
       min-width: 100vw;
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
+      /* Image du cosmos en fond */
+      background: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed;
+      background-size: cover;
+      background-position: center;
       position: relative;
-    }
-
-    .background-img {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: 0;
+      overflow: hidden;
     }
 
     .overlay {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100vw;
@@ -41,11 +37,11 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 1;
       text-align: center;
       color: #fff;
       font-family: Arial, sans-serif;
       padding: 2rem;
+      z-index: 1;
     }
 
     h1 {
@@ -86,10 +82,6 @@
   </style>
 </head>
 <body>
-  <!-- Image du cosmos en fond d'écran, prend tout l'espace -->
-  <img class="background-img" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80" alt="Cosmos Background">
-
-  <!-- Texte et bouton en superposition au centre -->
   <div class="overlay">
     <h1>La Trame de l’Univers</h1>
     <p>Une théorie cosmologique fondée sur les Pixels d’Information et l’Hyperspace Supraconscient.</p>
