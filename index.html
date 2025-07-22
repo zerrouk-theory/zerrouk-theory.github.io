@@ -5,31 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Théorie des Pixels d’Information</title>
   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
     body {
       font-family: "Georgia", serif;
-      background-color: #fdfdfd;
+      background: #0a0915;
       margin: 0;
       padding: 2rem;
       line-height: 1.7;
-      color: #1a1a1a;
+      color: #f2f2f2;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    h1 {
-      text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 2rem;
+    #cosmic-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
     }
 
     .content {
       max-width: 800px;
       margin: 0 auto;
       font-size: 1.1rem;
+      position: relative;
+      z-index: 1;
+      background: rgba(20, 20, 28, 0.75);
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 0 32px 0 #10101A88;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.8rem; /* réduit légèrement */
+      margin-bottom: 2rem;
+      letter-spacing: 1px;
     }
 
     .contact {
       margin-top: 3rem;
       padding-top: 2rem;
-      border-top: 1px solid #ccc;
+      border-top: 1px solid #444;
       font-style: italic;
       font-size: 1rem;
     }
@@ -37,9 +62,17 @@
     .contact p {
       margin: 0.4rem 0;
     }
+    a {
+      color: #aad0ff;
+      text-decoration: underline;
+    }
+    a:hover {
+      color: #fff;
+    }
   </style>
 </head>
 <body>
+  <canvas id="cosmic-bg"></canvas>
   <div class="content">
     <h1>Théorie des Pixels d’Information et Hyperspace Supraconscient</h1>
 
@@ -64,5 +97,64 @@
       <p>HAL ID : <a href="https://hal.science/hal-05173546" target="_blank">hal-05173546</a></p>
     </div>
   </div>
+  <script>
+    // Cosmic dynamic stars background
+    const canvas = document.getElementById('cosmic-bg');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Star field parameters
+    const numStars = Math.floor(w*h/3500);
+    let stars = [];
+    for(let i=0; i<numStars; i++) {
+      stars.push({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*1.2+0.2,
+        vx: (Math.random()-0.5)*0.15,
+        vy: (Math.random()-0.5)*0.15,
+        alpha: Math.random()*0.7+0.3
+      });
+    }
+
+    function drawStars() {
+      ctx.clearRect(0,0,w,h);
+      for(let star of stars) {
+        ctx.save();
+        ctx.globalAlpha = star.alpha;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, 2*Math.PI);
+        ctx.fillStyle = '#fff';
+        ctx.shadowColor = '#fff';
+        ctx.shadowBlur = 20;
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    function updateStars() {
+      for(let star of stars) {
+        star.x += star.vx;
+        star.y += star.vy;
+        if(star.x < 0) star.x = w;
+        if(star.x > w) star.x = 0;
+        if(star.y < 0) star.y = h;
+        if(star.y > h) star.y = 0;
+      }
+    }
+
+    function animate() {
+      drawStars();
+      updateStars();
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
 </body>
 </html>
