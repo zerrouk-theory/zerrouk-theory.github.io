@@ -122,5 +122,70 @@
     </div>
 
     <div class="contact">
-      <p><strong>Pour tout contact collaboratif relatif à la théorie :</strong></*
-
+      <p><strong>Pour tout contact collaboratif relatif à la théorie :</strong></p>
+      <p>Mohammed ZERROUK</p>
+      <p>Email : mzerrouk95@gmail.com</p>
+      <p>HAL ID : hal-05173546</p>
+    </div>
+  </div>
+  <script>
+    // Cosmic dynamic stars background
+    const canvas = document.getElementById('cosmic-bg');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Star field parameters (augmentation densité)
+    const numStars = Math.floor(w*h/1800); // densité doublée
+    let stars = [];
+    for(let i=0; i<numStars; i++) {
+      stars.push({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*1.5+0.2,
+        vx: (Math.random()-0.5)*0.12,
+        vy: (Math.random()-0.5)*0.12,
+        alpha: Math.random()*0.8+0.2
+      });
+    }
+
+    function drawStars() {
+      ctx.clearRect(0,0,w,h);
+      for(let star of stars) {
+        ctx.save();
+        ctx.globalAlpha = star.alpha;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, 2*Math.PI);
+        ctx.fillStyle = '#fff';
+        ctx.shadowColor = '#fff';
+        ctx.shadowBlur = 22;
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    function updateStars() {
+      for(let star of stars) {
+        star.x += star.vx;
+        star.y += star.vy;
+        if(star.x < 0) star.x = w;
+        if(star.x > w) star.x = 0;
+        if(star.y < 0) star.y = h;
+        if(star.y > h) star.y = 0;
+      }
+    }
+
+    function animate() {
+      drawStars();
+      updateStars();
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>
