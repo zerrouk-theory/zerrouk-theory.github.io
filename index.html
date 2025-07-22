@@ -117,7 +117,7 @@
     </p>
 
     <div style="margin-top:2rem; text-align:center;">
-      <a href="https://github.com/zerrouk-theory/zerrouk-theory.github.io/raw/main/nouveau_document.pdf.pdf" class="btn">PDF explicatif</a>
+      <a href="nouveau_document.pdf" class="btn">PDF explicatif</a>
       <a href="LIVRE_COMPLET_URL.pdf" class="btn">commander le livre complet</a>
     </div>
 
@@ -155,37 +155,5 @@
     }
 
     function drawStars() {
-      ctx.clearRect(0,0,w,h);
-      for(let star of stars) {
-        ctx.save();
-        ctx.globalAlpha = star.alpha;
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.r, 0, 2*Math.PI);
-        ctx.fillStyle = '#fff';
-        ctx.shadowColor = '#fff';
-        ctx.shadowBlur = 22;
-        ctx.fill();
-        ctx.restore();
-      }
-    }
-
-    function updateStars() {
-      for(let star of stars) {
-        star.x += star.vx;
-        star.y += star.vy;
-        if(star.x < 0) star.x = w;
-        if(star.x > w) star.x = 0;
-        if(star.y < 0) star.y = h;
-        if(star.y > h) star.y = 0;
-      }
-    }
-
-    function animate() {
-      drawStars();
-      updateStars();
-      requestAnimationFrame(animate);
-    }
-    animate();
-  </script>
-</body>
-</html>
+      ctx
+
