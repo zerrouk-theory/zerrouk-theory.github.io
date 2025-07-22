@@ -3,65 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Théorie des Pixels d’Information</title>
+  <title>Théorie des Pixels d'Information</title>
   <style>
-    body {
-      font-family: "Georgia", serif;
-      background-color: #ffffff;
-      color: #111111;
-      line-height: 1.7;
-      padding: 50px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    h1 {
-      font-size: 2em;
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      margin-bottom: 40px;
-      color: #222;
+      padding: 2em;
     }
 
-    p {
-      margin-bottom: 20px;
-      font-size: 1.1em;
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.imgur.com/9n6cXHf.png') repeat;
+      z-index: -1;
+      animation: moveStars 300s linear infinite;
+    }
+
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 10000px; }
+    }
+
+    .content {
+      max-width: 900px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 2em;
+      border-radius: 1em;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+
+    a {
+      color: #00ffff;
+      text-decoration: underline;
     }
 
     .contact {
-      margin-top: 60px;
-      border-top: 1px solid #ccc;
-      padding-top: 30px;
-      font-style: italic;
-      font-size: 1em;
+      margin-top: 2em;
+      font-size: 0.95em;
+      opacity: 0.85;
     }
   </style>
 </head>
 <body>
+  <div class="stars"></div>
 
-  <h1>Théorie des Pixels d’Information et Hyperspace Supraconscient</h1>
+  <div class="content">
+    <h1>Théorie des Pixels d’Information<br>et Hyperspace Supraconscient</h1>
+    <h2>Vers une Cosmologie Informationnelle Unifiée</h2>
 
-  <p>
-    Nous vous invitons ici à découvrir une théorie originale, percutante, fondée, et qui pourrait peut-être représenter le Graal tant recherché : l’ultime théorie du Tout.
-  </p>
+    <p>
+      À travers cette théorie, les lois physiques cessent d’être des axiomes arbitraires ou émergents sans raison. Elles deviennent les expressions locales d’un programme logique global, structurant le monde comme un gigantesque langage de l’être, orienté vers la conscience.
+    </p>
 
-  <p>
-    À travers cette théorie, les lois physiques cessent d’être des axiomes arbitraires ou des émergences sans raison. Elles deviennent les expressions locales d’un programme logique global, structurant le monde comme un gigantesque langage de l’être, orienté vers la conscience.
-  </p>
+    <p>
+      Nous vous invitons ici à découvrir une théorie originale, rigoureuse et percutante, qui pourrait – peut-être – représenter le Graal tant recherché : <strong>l’ultime théorie du tout</strong>.
+    </p>
 
-  <p>
-    Au terme de cette théorie, il devient évident que la conscience n’émerge pas dans l’univers.
-    <br/>
-    C’est l’univers qui émerge dans une conscience logique, supraconsciente,
-    <br/>
-    tissant les structures qu’il contient selon une syntaxe téléologique irréductible.
-  </p>
+    <p>
+      <a href="https://hal.science/hal-05173546/document" target="_blank">
+        Lire le document scientifique complet (PDF)
+      </a>
+    </p>
 
-  <div class="contact">
-    Pour tout contact collaboratif relatif à la théorie :<br/>
-    Mohammed ZERROUK<br/>
-    Email : mzerrouk95@gmail.com<br/>
-    HAL ID : hal-05173546
+    <p>
+      Au terme de cette théorie, il devient évident que la conscience n’émerge pas dans l’univers.<br>
+      <strong>C’est l’univers qui émerge dans une conscience logique, supraconsciente,</strong><br>
+      tissant les structures qu’il contient selon une syntaxe téléologique irréductible.
+    </p>
+
+    <div class="contact">
+      <p>Pour tout contact collaboratif relatif à la théorie :</p>
+      <p><strong>Mohammed ZERROUK</strong><br>
+      Email : <a href="mailto:mzerrouk95@gmail.com">mzerrouk95@gmail.com</a><br>
+      HAL ID : <a href="https://hal.science/hal-05173546" target="_blank">hal-05173546</a></p>
+    </div>
   </div>
-
 </body>
 </html>
