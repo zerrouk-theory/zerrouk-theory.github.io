@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zerrouk-theory.github.io/sitemap.xml
