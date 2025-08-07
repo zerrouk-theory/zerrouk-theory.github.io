@@ -163,19 +163,21 @@
   </div>
 
   <script>
-    // Fond étoilé
     const canvas = document.getElementById('cosmic-bg');
     const ctx = canvas.getContext('2d');
     let w, h;
+
     function resize() {
       w = canvas.width = window.innerWidth;
       h = canvas.height = window.innerHeight;
     }
+
     window.addEventListener('resize', resize);
     resize();
 
     const numStars = Math.floor(w * h / 1800);
     let stars = [];
+
     for (let i = 0; i < numStars; i++) {
       stars.push({
         x: Math.random() * w,
