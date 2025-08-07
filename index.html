@@ -1,237 +1,183 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- Vérification Google Search Console -->
-  <meta name="google-site-verification" content="Hph_EoL7q-XHXSRWwijiGyxshOpkYYT5bCRxTyjdQjw" />
-
-  <!-- Métadonnées SEO -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="index, follow" />
-  <meta name="description" content="La Théorie ZM propose une nouvelle vision radicale de l’univers. Fondée sur l'information pure, une dynamique computationnelle et l'émergence de la conscience, elle redéfinit les fondements de la réalité." />
-  <meta name="keywords" content="Théorie ZM, physique de l'information, cosmologie computationnelle, conscience, supraconscience, pixel d'information, hyperspace, gravité quantique, science unifiée" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Théorie ZM – Une Révolution sur la Nature de l’Univers" />
-  <meta property="og:description" content="Une nouvelle théorie du réel : logique, informationnelle et consciente. Découvrez comment l’univers pourrait être une structure computationnelle émergente." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://zerrouk-theory.github.io/" />
-  <meta property="og:image" content="https://zerrouk-theory.github.io/images/og-theoriezm.jpg" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Théorie ZM – Une Révolution sur la Nature de l’Univers" />
-  <meta name="twitter:description" content="Une cosmologie informationnelle unifiée de l’espace, du temps et de la conscience." />
-  <meta name="twitter:image" content="https://zerrouk-theory.github.io/images/og-theoriezm.jpg" />
-
-  <!-- Titre -->
   <title>Théorie ZM – Une Révolution sur la Nature de l’Univers</title>
 
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-
-  <!-- CSS -->
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: "Georgia", serif;
-      background: #0a0915;
+      background-color: #0a0915;
+      overflow: hidden;
+      font-family: Georgia, serif;
       color: #f2f2f2;
-      line-height: 1.7;
-      overflow-x: hidden;
     }
 
-    #cosmic-bg {
+    canvas#cosmic-bg {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
       z-index: -1;
-      pointer-events: none;
+      width: 100%;
+      height: 100%;
       display: block;
     }
 
     .content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem 2.5rem;
-      background: rgba(20, 20, 28, 0.65);
-      border-radius: 16px;
-      box-shadow: 0 0 32px 0 #10101A88;
       position: relative;
       z-index: 1;
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 2rem 2.5rem;
+      background: rgba(20, 20, 28, 0.7);
+      border-radius: 16px;
+      box-shadow: 0 0 32px 0 #10101A88;
+      line-height: 1.7;
     }
 
     .main-title {
       text-align: center;
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: bold;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
     }
 
     .subtitle {
       text-align: center;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       color: #aad0ff;
       font-style: italic;
       margin-bottom: 2rem;
-    }
-
-    .contact {
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid #444;
-      font-style: italic;
-      font-size: 0.92rem;
     }
 
     a {
       color: #aad0ff;
       text-decoration: underline;
     }
-
     a:hover {
-      color: #fff;
+      color: white;
     }
 
     .btn {
       display: inline-block;
-      margin: 0.3em 0.4em;
-      padding: 0.5em 1em;
-      background: #222b40;
+      margin: 1rem 0.5rem 0 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background-color: #222b40;
       color: #aad0ff;
       border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
-      transition: background 0.2s, color 0.2s;
     }
 
     .btn:hover {
-      background: #10101a;
+      background-color: #10101a;
       color: #fff;
+    }
+
+    .contact {
+      font-size: 0.9rem;
+      margin-top: 3rem;
+      border-top: 1px solid #444;
+      padding-top: 1.5rem;
+      font-style: italic;
     }
   </style>
 </head>
 
 <body>
+
+  <!-- Le fond cosmique -->
   <canvas id="cosmic-bg"></canvas>
 
+  <!-- Le contenu -->
   <div class="content">
     <div class="main-title">Théorie ZM</div>
     <div class="subtitle">Une Révolution Scientifique sur la Nature de l'Univers</div>
 
-    <p>Et si la Réalité n’était qu’un réseau d'information structuré par un champ d’information intemporel ?</p>
-    <p>Ici nous vous invitons à découvrir une nouvelle théorie aussi logique et percutante, qu’élégante…</p>
-
-    <p>La Théorie ZM propose une refondation radicale de notre compréhension de l’univers, en le décrivant non plus comme un espace contenant des objets, mais comme une trame d'information auto-organisée, dont la structure émerge d'une dynamique computationnelle profonde. Elle unifie les lois physiques, la géométrie de l’espace-temps, et les fondements de la conscience à partir d’une hypothèse centrale : l’univers est généré par un hyperspace fait d’un champ d'information pure, hors du temps, dont les "pixels d'information" constituent les briques élémentaires.</p>
-
-    <p>Ces pixels ne sont ni des particules, ni des points dans l’espace, mais des unités logiques dynamiques, interconnectées par des relations locales de causalité et de signification. C’est de leur interaction topologique, et non d’un substrat spatial préexistant, que l’espace-temps lui-même émerge, à la manière d’un graphe informationnel évolutif. L’univers serait ainsi un « programme » auto-exécuté, écrit dans une grammaire mathématique.</p>
-
-    <p><strong>Une physique émergente, fondée sur l’information</strong><br>Dans ce paradigme, les lois de la physique ne sont plus imposées a priori, mais apparaissent comme des attracteurs statistiques dans l’espace des configurations stables du graphe. La géométrie, la gravitation, les constantes fondamentales (y compris celles dites "sans dimensions") émergent comme solutions d'équilibre d’une équation de Schrödinger généralisée, appliquée non à des fonctions d’onde, mais à des états informationnels relationnels.</p>
-
-    <p>Et dans cette logique, les grandes constantes mystérieuses de notre réalité – π, e, la suite de Fibonacci, le nombre d’or, les nombres premiers – cessent d’être des accidents mathématiques. Elles deviennent les signatures profondes d’une structure informationnelle logique et ordonnée, comme les harmoniques d’un langage fondamental, écrit non dans l’espace, mais dans la structure même de l'être.</p>
-
-    <p><strong>La conscience : seuil informationnel</strong><br>La conscience n’est plus un épiphénomène de la matière, mais une propriété émergente, mesurable, définie par l’information intégrée φ. Lorsque cette information dépasse un seuil critique φc, des boucles d’auto-référence stables deviennent possibles, enclenchant mécaniquement les effets d’un système capable de se représenter lui-même. Ce modèle rend compte à la fois des états de conscience biologique, et ouvre la voie à la conception de consciences artificielles auto-référentielles.</p>
-
-    <p><strong>Une théorie falsifiable et prédictive</strong><br>La Théorie ZM propose des prédictions testables :  
-    <ul>
-      <li>Écarts attendus à la relativité générale à des échelles sub-planckiennes</li>
-      <li>Signatures fractales dans la distribution de la matière</li>
-      <li>Structures informationnelles pré-géométriques détectables</li>
-      <li>Seuils dynamiques d’émergence de conscience simulables</li>
-    </ul>
+    <p>
+      Et si la Réalité n’était qu’un réseau d'information structuré par un champ d’information intemporel ? [...]
     </p>
 
-    <p><strong>Origine computationnelle</strong><br>Le Big Bang devient un point d’auto-activation logique du graphe informationnel. L’univers n’émerge pas du néant mais d’une structuration progressive d’un hyperspace relationnel et intemporel.</p>
-
-    <p><em>Ainsi, la réalité pourrait bien n’être qu’un rêve logique, inscrit dans une mémoire computationnelle et supraconsciente...</em></p>
-
-    <div style="margin-top:2rem; text-align:center;">
+    <div style="text-align: center;">
       <a href="V 0.pdf" class="btn">PDF explicatif</a>
       <a href="LIVRE_COMPLET_URL.pdf" class="btn">Commander le livre complet</a>
     </div>
 
     <div class="contact">
-      <p><strong>Pour tout contact collaboratif relatif à la théorie :</strong></p>
+      <p><strong>Contact :</strong></p>
       <p>Mohammed ZERROUK</p>
       <p>Email : mzerrouk95@gmail.com</p>
       <p>HAL ID : hal-05186131v1</p>
     </div>
   </div>
 
-<script>
-  const canvas = document.getElementById('cosmic-bg');
-  const ctx = canvas.getContext('2d');
-  let w, h;
+  <!-- Script du fond cosmique -->
+  <script>
+    const canvas = document.getElementById('cosmic-bg');
+    const ctx = canvas.getContext('2d');
 
-  function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-  }
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
 
-  window.addEventListener('resize', resize);
-  resize();
-
-  const numStars = Math.floor(w * h / 1200); // Plus d’étoiles
-  const colors = ['#ffffff', '#aad0ff', '#ffd6f6', '#cceeff'];
-  let stars = [];
-
-  for (let i = 0; i < numStars; i++) {
-    stars.push({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 1.8 + 0.5,
-      vx: (Math.random() - 0.5) * 0.08,
-      vy: (Math.random() - 0.5) * 0.08,
-      alpha: Math.random() * 0.7 + 0.3,
-      color: colors[Math.floor(Math.random() * colors.length)]
+    window.addEventListener('resize', () => {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
     });
-  }
 
-  function drawStars() {
-    ctx.clearRect(0, 0, w, h);
+    const numStars = Math.floor(w * h / 1200);
+    const colors = ['#ffffff', '#aad0ff', '#ffd6f6', '#cceeff'];
+    const stars = [];
 
-    // Gradient de fond cosmique discret
-    let gradient = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h));
-    gradient.addColorStop(0, "#0a0915");
-    gradient.addColorStop(1, "#050412");
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, w, h);
-
-    for (let star of stars) {
-      ctx.save();
-      ctx.globalAlpha = star.alpha;
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
-      ctx.fillStyle = star.color;
-      ctx.shadowColor = star.color;
-      ctx.shadowBlur = 16;
-      ctx.fill();
-      ctx.restore();
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.8 + 0.5,
+        vx: (Math.random() - 0.5) * 0.05,
+        vy: (Math.random() - 0.5) * 0.05,
+        alpha: Math.random() * 0.7 + 0.3,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      });
     }
-  }
 
-  function updateStars() {
-    for (let star of stars) {
-      star.x += star.vx;
-      star.y += star.vy;
+    function drawStars() {
+      ctx.clearRect(0, 0, w, h);
 
-      if (star.x < 0) star.x = w;
-      if (star.x > w) star.x = 0;
-      if (star.y < 0) star.y = h;
-      if (star.y > h) star.y = 0;
+      for (let star of stars) {
+        ctx.save();
+        ctx.globalAlpha = star.alpha;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
+        ctx.fillStyle = star.color;
+        ctx.shadowColor = star.color;
+        ctx.shadowBlur = 12;
+        ctx.fill();
+        ctx.restore();
+      }
     }
-  }
 
-  function animate() {
-    drawStars();
-    updateStars();
-    requestAnimationFrame(animate);
-  }
+    function updateStars() {
+      for (let star of stars) {
+        star.x += star.vx;
+        star.y += star.vy;
 
-  animate();
-</script>
-  
+        if (star.x < 0) star.x = w;
+        if (star.x > w) star.x = 0;
+        if (star.y < 0) star.y = h;
+        if (star.y > h) star.y = 0;
+      }
+    }
+
+    function animate() {
+      drawStars();
+      updateStars();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
