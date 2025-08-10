@@ -42,10 +42,10 @@
       pointer-events: none;
       background:
         radial-gradient(1200px 800px at 70% 30%, rgba(30,60,120,0.35), transparent 65%),
-        radial-gradient(900px 900px at 25% 75%, rgba(110,40,160,0.25), transparent 55%),
+        radial-gradient(900px 900px at 25% 75%, rgba(110,40,160,0.22), transparent 55%),
         radial-gradient(1600px 1200px at 10% 10%, rgba(10,20,40,0.35), transparent 70%),
         linear-gradient(180deg, #060813 0%, #0a0f20 60%, #060813 100%);
-      filter: saturate(1.05) contrast(1.05) brightness(0.95);
+      filter: saturate(1.06) contrast(1.06) brightness(0.96);
     }
 
     /* Deux couches d’étoiles pour profondeur */
@@ -58,8 +58,8 @@
       display: block;
       pointer-events: none;
     }
-    #stars-far{ z-index: -2; opacity: .9; }
-    #stars-near{ z-index: -1; opacity: .95; }
+    #stars-far{ z-index: -2; opacity: .92; }
+    #stars-near{ z-index: -1; opacity: .97; }
 
     .content{
       max-width: 800px;
@@ -101,8 +101,8 @@
     }
     .btn:hover{ background: #10101a; color: #fff; }
 
+    /* En mode "réduire les animations", on garde le fond, on ne cache pas les canvases. */
     @media (prefers-reduced-motion: reduce){
-      #stars-far, #stars-near{ display: none; }
       #nebula{ background-attachment: fixed; }
     }
   </style>
@@ -186,28 +186,48 @@
   </div>
 
   <script>
-    // Deux couches d’étoiles, far et near, pour la profondeur
-    const layerFar = document.getElementById('stars-far');
-    const layerNear = document.getElementById('stars-near');
-    const ctxFar = layerFar.getContext('2d');
-    const ctxNear = layerNear.getContext('2d');
+    // Canvases
+    const far = document.getElementById('stars-far');
+    const near = document.getElementById('stars-near');
+    const cFar = far.getContext('2d');
+    const cNear = near.getContext('2d');
 
-    let W = 0, H = 0;
-    function fit(){
-      W = layerFar.width  = layerNear.width  = window.innerWidth;
-      H = layerFar.height = layerNear.height = window.innerHeight;
-      initStars();
+    // Hi-DPI
+    function sizeCanvas(canvas){
+      const ratio = Math.max(window.devicePixelRatio || 1, 1);
+      canvas.style.width  = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      canvas.width  = Math.floor(window.innerWidth  * ratio);
+      canvas.height = Math.floor(window.innerHeight * ratio);
+      const ctx = canvas.getContext('2d');
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
     }
-    window.addEventListener('resize', fit);
+
+    let W = 0, H = 0, raf = 0;
+    function fit(){
+      sizeCanvas(far);
+      sizeCanvas(near);
+      W = window.innerWidth;
+      H = window.innerHeight;
+      initStars();
+      if (mq.matches){ renderStatic(); } // si animations réduites, on redessine statique
+    }
+
+    window.addEventListener('resize', () => {
+      // throttle léger pour éviter de trop redessiner pendant le resize
+      clearTimeout(fit._t);
+      fit._t = setTimeout(fit, 120);
+    });
 
     // Distributions
     let starsFar = [], starsNear = [], shooting = [];
     function initStars(){
-      const countFar = Math.max(300, Math.floor(W * H / 8000));
-      const countNear = Math.max(180, Math.floor(W * H / 12000));
+      const density = Math.max(1, Math.min(2.2, (W*H) / (1200*800))); // densité adaptative
+      const countFar  = Math.floor(320 * density);
+      const countNear = Math.floor(200 * density);
 
-      starsFar = createStars(countFar, 0.6, 1.4, 0.012);
-      starsNear = createStars(countNear, 0.9, 1.9, 0.018);
+      starsFar = createStars(countFar, 0.7, 1.6, 0.012);
+      starsNear = createStars(countNear, 1.0, 2.1, 0.018);
       shooting = [];
     }
 
@@ -218,7 +238,7 @@
           x: Math.random()*W,
           y: Math.random()*H,
           r: rMin + Math.random()*(rMax - rMin),
-          a: 0.2 + Math.random()*0.8,
+          a: 0.25 + Math.random()*0.75,
           tw: 0.004 + Math.random()*0.01,
           vx: (Math.random()-0.5)*speed,
           vy: (Math.random()-0.5)*speed
@@ -227,12 +247,13 @@
       return arr;
     }
 
-    function drawLayer(ctx, stars, glow='#cfe8ff'){
+    function drawLayer(ctx, stars, glow){
       ctx.clearRect(0, 0, W, H);
+      ctx.shadowBlur = 0; // reset sécurité
       for(const s of stars){
         s.a += (Math.random()-0.5)*s.tw;
-        if(s.a < 0.15) s.a = 0.15;
-        if(s.a > 1)    s.a = 1;
+        if(s.a < 0.16) s.a = 0.16;
+        if(s.a > 1.00) s.a = 1.00;
 
         s.x += s.vx; s.y += s.vy;
         if(s.x < 0) s.x = W; if(s.x > W) s.x = 0;
@@ -244,7 +265,7 @@
         ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
         ctx.fillStyle = '#ffffff';
         ctx.shadowColor = glow;
-        ctx.shadowBlur = 14;
+        ctx.shadowBlur = 16;
         ctx.fill();
         ctx.restore();
       }
@@ -268,14 +289,14 @@
       for(let i=shooting.length-1; i>=0; i--){
         const sh = shooting[i];
         ctx.save();
-        const grad = ctx.createLinearGradient(sh.x, sh.y, sh.x - sh.vx*20, sh.y - sh.vy*20);
-        grad.addColorStop(0, `rgba(255,255,255,${0.85*sh.life})`);
+        const grad = ctx.createLinearGradient(sh.x, sh.y, sh.x - sh.vx*22, sh.y - sh.vy*22);
+        grad.addColorStop(0, `rgba(255,255,255,${0.88*sh.life})`);
         grad.addColorStop(1, `rgba(180,220,255,0)`);
         ctx.strokeStyle = grad;
         ctx.lineWidth = 1.6;
         ctx.beginPath();
         ctx.moveTo(sh.x, sh.y);
-        ctx.lineTo(sh.x - sh.vx*20, sh.y - sh.vy*20);
+        ctx.lineTo(sh.x - sh.vx*22, sh.y - sh.vy*22);
         ctx.stroke();
         ctx.restore();
 
@@ -285,27 +306,38 @@
       }
     }
 
-    let raf = 0;
+    function renderStatic(){
+      drawLayer(cFar, starsFar, '#bcd7ff');
+      drawLayer(cNear, starsNear, '#d9ecff');
+      // pas d’étoiles filantes en statique
+    }
+
     function loop(){
-      drawLayer(ctxFar, starsFar, '#bcd7ff');
-      drawLayer(ctxNear, starsNear, '#d9ecff');
+      drawLayer(cFar, starsFar, '#bcd7ff');
+      drawLayer(cNear, starsNear, '#d9ecff');
       maybeShoot();
-      drawShooting(ctxNear);
+      drawShooting(cNear);
       raf = requestAnimationFrame(loop);
     }
 
     // Accessibilité
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
     function motionHandler(e){
-      if(e.matches){ cancelAnimationFrame(raf); ctxFar.clearRect(0,0,W,H); ctxNear.clearRect(0,0,W,H); }
-      else{ loop(); }
+      if(e.matches){
+        cancelAnimationFrame(raf);
+        renderStatic();
+      }else{
+        cancelAnimationFrame(raf);
+        loop();
+      }
     }
     if (mq.addEventListener) mq.addEventListener('change', motionHandler);
     else mq.addListener(motionHandler);
 
     // Lancement
     fit();
-    if(!mq.matches) loop();
+    if (!mq.matches) loop();
+    else renderStatic();
   </script>
 </body>
 </html>
